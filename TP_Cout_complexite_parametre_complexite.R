@@ -8,6 +8,7 @@ post(fit,file="")
 
 ### calculons le coefficient de corrélation Rα(T) de l'arbre de décision avec nsplit=2
 # Charger les données
+library(rpart)
 jouer_base <- read.table("C:/Users/ibrah/OneDrive/Bureau/M2GL/Semestre02/IA/Data/arbre.txt", header=TRUE)
 # Construire l'arbre avec nsplit=2
 fit <- rpart(Jouer ~ Temps + Temperature + Humidite + Venteux,
@@ -22,6 +23,7 @@ print(resubstitution_error)
 
 ### calculons le coefficient de corrélation Rα(T) de l'arbre de décision avec nsplit=4
 # Charger les données
+library(rpart)
 jouer_base <- read.table("C:/Users/ibrah/OneDrive/Bureau/M2GL/Semestre02/IA/Data/arbre.txt", header=TRUE)
 # Construire l'arbre avec nsplit=2
 fit <- rpart(Jouer ~ Temps + Temperature + Humidite + Venteux,

@@ -20,6 +20,15 @@ printcp(fit)
 # Cela réduit l'erreur relative à 0.0 et augmente légèrement l'erreur de validation croisée à 1.4.
 # les nœuds 0, 2 et 6 comme des candidats où la fonction de perte peut être appliquée pour améliorer la précision du modèle.
 
+# Combien de fois doit on appliquer la fonction de perte
+# La première application de la fonction de perte se fait au nœud 0, 
+# qui est le nœud racine de l'arbre. La valeur d'erreur relative au nœud 0 est de 1.0, 
+# et la fonction de perte est calculée pour évaluer la qualité de la division à partir du nœud racine.
+# La dernière application de la fonction de perte est effectuée au nœud 6, 
+# où la variable "Temps" est utilisée comme critère de division. 
+# La fonction de perte est appliquée pour évaluer si cette division améliore 
+# les performances du modèle par rapport à l'état précédent (nœud 2).
+
 
 # Calculer l'erreur en resubstitution de cet arbre.
 # Prédictions de l'arbre sur les données d'entraînement
