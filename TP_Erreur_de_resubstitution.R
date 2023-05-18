@@ -42,9 +42,9 @@ cat("Erreur en resubstitution:", erreur_resubstitution, "\n")
 
 ### Comment obtenir l'erreur en resubstitution sans d'etailler l'application de la fonction de perte.
 
-### Le realerror de cet l'arbre qu'on a généré est de 0.4, dire comment elle est obtenue ?
+### Le realerror de cet arbre qu'on a généré est de 0.4, dire comment elle est obtenue ?
 # Définition du nombre de folds pour la validation croisée
-k <- 5
+k <- 6
 
 # Création des indices des folds
 set.seed(42)  # Fixer la graine aléatoire pour la reproductibilité

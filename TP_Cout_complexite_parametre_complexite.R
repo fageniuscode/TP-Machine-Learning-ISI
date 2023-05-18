@@ -5,6 +5,7 @@ fit <- rpart(Jouer ~ Temps + Temperature + Humidite + Venteux,
              method="class", data=jouer_base,
              control=rpart.control(minsplit=1))
 post(fit,file="")
+#printcp(fit)
 
 ### calculons le coefficient de corrélation Rα(T) de l'arbre de décision avec nsplit=2
 # Charger les données
