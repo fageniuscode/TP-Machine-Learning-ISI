@@ -26,7 +26,7 @@ print(resubstitution_error)
 # Charger les données
 library(rpart)
 jouer_base <- read.table("C:/Users/ibrah/OneDrive/Bureau/M2GL/Semestre02/IA/Data/arbre.txt", header=TRUE)
-# Construire l'arbre avec nsplit=2
+# Construire l'arbre avec nsplit=4
 fit <- rpart(Jouer ~ Temps + Temperature + Humidite + Venteux,
              method="class", data=jouer_base,
              control=rpart.control(minsplit=4))
