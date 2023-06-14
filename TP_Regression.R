@@ -2,52 +2,67 @@ sample1.df <- read.table("C:/Users/ibrah/OneDrive/Bureau/M2GL/Semestre02/IA/Data
                          header=TRUE, sep=",", na.strings = "NA", dec = ".", strip.white = TRUE)
 sample1.df
 
+# Chargement de la bibliothèque DAAG
 library(DAAG)
-val1.daag <- CVlm(data = sample1.df, m = 10,
-                  form.lm = formula (y ~x1 + x2 + x3 + x4 + x5 + x6, + x7))
 
-IndicesT8 <- c(7, 25, 26, 43, 67, 68, 76, 84, 85, 97)
-IndicesT8
+# Validation croisée à l'aide de la fonction CVlm
+# Les données utilisées sont sample1.df
+# m = 10 indique que la validation croisée est effectuée avec 10 plis
+# form.lm définit le modèle de régression avec la formule y ~ x1 + x2 + x3 + x4 + x5 + x6 + x7
+val1.daag <- CVlm(data = sample1.df, m = 10, form.lm = formula (y ~x1 + x2 + x3 + x4 + x5 + x6 + x7))
 
-TSample8.df <- sample1.df[-IndicesT8, ]
-TSample8.df
+#------------------------------------------------------------------------------------
 
-M8.lm <- lm(y ~x1 + x2 + x3 +x4 + x5 + x6 + x7,
-            data = TSample8.df)
-# A comparer avec B8
-M8.lm
-
+# Extraction de la 3ème colonne de TSample8.df et création de la matrice y8
 y8<-as.matrix(TSample8.df[,3])
+
+# Création d'un vecteur vc rempli de 1, ayant une longueur de 90
 vc<-rep(1,90)
+
+# Création d'une séquence allant de 1 au nombre de lignes de TSample8.df
+# et assignation à la variable l
 l<-seq(1,nrow(TSample8.df))
+
+# Affichage de la séquence l
 l
+
+# Création d'une séquence allant de 4 au nombre de colonnes
+# de TSample8.df et assignation à la variable c
 c<-seq(4,ncol(TSample8.df))
+
+# Affichage de la séquence c
 c
+
+# Extraction des lignes de TSample8.df correspondant aux indices de la séquence l 
+# et des colonnes correspondant aux indices de la séquence c
 TSample8.df[l,c]
+
+# Création d'une nouvelle matrice x.df en combinant
+# le vecteur vc et les valeurs extraites de TSample8.df
 x.df<-cbind(vc, TSample8.df[l,c])
+
+# Conversion de la matrice x.df en une matrice x
 x<-as.matrix(x.df)
+
+# Affichage de la matrice x
 x
+
+# Calcul de l'inverse de la matrice (x^T * x)
 stxx<-solve(t(x)%*%x)
+
+# Calcul du produit transposé de x multiplié par y8
 txy<-t(x)%*%y8
+
+# Calcul du produit de stxx par txy pour obtenir le vecteur B8
 B8<-stxx%*%txy
+
+B8
 #A comparer avec M8.lm
 
-#--- Les deux résultats sont les mêmes:
-#---- Pour le premier ------ #
-# Il crée le vecteur IndicesT8 contenant les indices des observations à exclure de sample1.df.
-# Il crée un nouvel objet de données TSample8.df en excluant les observations ayant
-# les indices spécifiés dans IndicesT8 à partir de sample1.df.
-# Il affiche le modèle linéaire multiple M8.lm.
-
-#---- Pour le premier ------ #
-# Il crée une matrice y8 en extrayant la troisième colonne de TSample8.df.
-# Il crée un vecteur vc de 90 éléments, où chaque élément est égal à 1.
-# Il crée un vecteur l contenant une séquence de nombres allant de 1 à nrow(TSample8.df).
-# Il crée un vecteur c contenant une séquence de nombres allant de 4 à ncol(TSample8.df).
-# Il extrait une sous-matrice de TSample8.df en utilisant les indices spécifiés dans les vecteurs l et c.
-# Il combine le vecteur vc et la sous-matrice extraite pour former une nouvelle matrice x.df.
-# Il convertit la matrice x.df en une matrice x.
-# Il calcule l'inverse de la matrice transposée de x multipliée par x et stocke le résultat dans stxx.
-# Il calcule le produit de la transposée de x par y8 et stocke le résultat dans txy.
-# Il calcule le produit de stxx par txy et stocke le résultat dans B8.
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+#   On peut voir que les résultats des deux méthodes sont très similaires. 
+#   Les coefficients estimés pour les variables x1, x2, x3, x4, x5, x6 et x7 
+#   sont presque identiques. De plus, le coefficient d'interception (Intercept) 
+#   est également le même (-2.788877). Cela indique que les deux approches 
+#   de modélisation linéaire ont produit des résultats cohérents.
 
