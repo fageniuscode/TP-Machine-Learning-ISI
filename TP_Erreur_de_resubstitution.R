@@ -3,7 +3,7 @@ library(rpart)
 jouer_base <- read.table("C:/Users/ibrah/OneDrive/Bureau/M2GL/Semestre02/IA/Data/arbre.txt", header=TRUE)
 fit <- rpart(Jouer ~ Temps + Temperature + Humidite + Venteux,
              method="class", data=jouer_base,
-             control=rpart.control(minsplit=2))
+             control=rpart.control(minsplit=4))
 post(fit,file="")
 
 ### Identification des noeuds sur lesquels la fonction de perte doit être appliquée
