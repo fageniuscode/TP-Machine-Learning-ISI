@@ -9,8 +9,19 @@ library(DAAG)
 # Les données utilisées sont sample1.df
 # m = 10 indique que la validation croisée est effectuée avec 10 plis
 # form.lm définit le modèle de régression avec la formule y ~ x1 + x2 + x3 + x4 + x5 + x6 + x7
-val1.daag <- CVlm(data = sample1.df, m = 10, form.lm = formula (y ~x1 + x2 + x3 + x4 + x5 + x6 + x7))
+val1.daag <- CVlm(data = sample1.df, m = 10, 
+             form.lm = formula (y ~x1 + x2 + x3 + x4 + x5 + x6 + x7))
 
+IndicesT8 <- c(7, 25, 26, 43, 67, 68, 76, 84, 85, 97)
+IndicesT8
+
+TSample8.df <- sample1.df[-IndicesT8, ]
+TSample8.df
+
+M8.lm <- lm(y ~x1 + x2 + x3 +x4 + x5 + x6 + x7,
+            data = TSample8.df)
+# A comparer avec B8
+M8.lm
 #------------------------------------------------------------------------------------
 
 # Extraction de la 3ème colonne de TSample8.df et création de la matrice y8
@@ -65,4 +76,5 @@ B8
 #   sont presque identiques. De plus, le coefficient d'interception (Intercept) 
 #   est également le même (-2.788877). Cela indique que les deux approches 
 #   de modélisation linéaire ont produit des résultats cohérents.
+
 
